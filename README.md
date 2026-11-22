@@ -1,72 +1,106 @@
 # Vocal Gloves
 
-A wearable gesture-to-speech system that uses motion sensors and wireless communication to recognize hand gestures and play corresponding voice prompts. The project is designed around two sensor gloves and a central audio receiver.
+**A wearable gesture-based communication system**
 
-> **Project status:** Hardware and firmware are under development. The left-glove sketch is intentionally a placeholder so its firmware can be added separately.
+Vocal Gloves is an assistive-technology project designed to translate hand movements into spoken audio prompts. Two sensor-equipped gloves detect gestures and communicate wirelessly with a receiver, which selects and plays the corresponding voice recording.
 
-## Project Photos
+The project is being developed with accessible, low-cost embedded hardware, with the goal of making everyday communication easier for people who may have difficulty speaking.
 
-Place your project photos in `assets/images/` using these filenames:
+> **Development status:** The project is under development. The left-glove firmware is currently a placeholder; its implementation will be added separately. Hardware, gesture recognition, and audio playback should be tested together before real-world use.
 
-| Photo | File to add |
+---
+
+## Project Gallery
+
+<p align="center">
+  <img src="assets/images/vocal-gloves-overview.jpg" alt="Vocal Gloves project overview" width="48%" />
+  &nbsp;
+  <img src="assets/images/vocal-gloves-receiver.jpg" alt="Vocal Gloves receiver unit" width="48%" />
+</p>
+<p align="center">
+  <sub>Project overview</sub>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <sub>Wireless audio receiver</sub>
+</p>
+
+**Add your images:** upload the two photos to `assets/images/` using the exact filenames shown above. You can change the displayed image width by editing the `width` values in this section.
+
+## Project Creators
+
+<p align="center">
+  <a href="docs/project-creator.md">Meet the project creators</a>
+</p>
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <img src="assets/images/yugansu-rijal.jpg" alt="Yugansu Rijal wearing Vocal Gloves" width="180" />
+      <br />
+      <strong>Yugansu Rijal</strong>
+    </td>
+    <td align="center" width="50%">
+      <img src="assets/images/suprim-ojha.jpg" alt="Suprim Ojha wearing Vocal Gloves" width="180" />
+      <br />
+      <strong>Suprim Ojha</strong>
+    </td>
+  </tr>
+</table>
+
+Upload each creator's photo to `assets/images/` with the matching filename. The images are displayed at **180 pixels wide**; change the `width="180"` attribute above to adjust their size.
+
+---
+
+## How It Works
+
+1. **Motion sensing** — MPU6050 sensors measure hand movement and orientation.
+2. **Gesture recognition** — The Arduino Nano processes sensor readings to identify a configured gesture.
+3. **Wireless transmission** — nRF24L01 radio modules send gesture data from each glove to the receiver.
+4. **Audio playback** — The receiver maps the gesture to an audio track and plays the selected prompt through the DFPlayer Mini.
+
+### System Overview
+
+| Unit | Main responsibility |
 |---|---|
-| Full project overview | `vocal-gloves-overview.jpg` |
-| Receiver unit | `vocal-gloves-receiver.jpg` |
+| Left glove | Detects left-hand gestures and sends gesture data |
+| Right glove | Detects right-hand gestures and sends gesture data |
+| Receiver | Receives gesture packets and plays the mapped audio prompt |
 
-### Project Overview
-![Vocal Gloves overview](assets/images/vocal-gloves-overview.jpg)
+The current receiver firmware is organized for gesture IDs **G01–G06** from the left glove and **G07–G12** from the right glove. The receiver uses audio folder **01** for Nepali and **02** for English.
 
+## Hardware
 
-### Receiver Unit
-![Vocal Gloves receiver](assets/images/vocal-gloves-receiver.jpg)
-
-## Project Creator
-
-Add a photo of yourself wearing the Vocal Gloves. Save it as `my-vocal-gloves-photo.jpg` inside `assets/images/`. It will appear in the dedicated [Project Creator Photo page](docs/project-creator.md).
-
-## System Architecture
-
-- **Left glove:** Reads motion data from an MPU6050, identifies left-hand gestures, and transmits gesture packets over nRF24L01.
-- **Right glove:** Reads motion data from an MPU6050, identifies right-hand gestures, and transmits gesture packets over nRF24L01.
-- **Receiver:** Receives gesture packets, selects the corresponding audio track, and plays it through the DFPlayer Mini.
-
-The current receiver firmware expects gesture IDs **G01–G06** from the left glove and **G07–G12** from the right glove. It uses language folder **1 for Nepali** and **2 for English** on the DFPlayer-compatible microSD card.
-
-## Hardware Components
-
-### Each Glove (Left and Right)
-
-| Component | Quantity per glove | Purpose |
-|---|---:|---|
-| Arduino Nano | 1 | Main controller |
-| MPU6050 | 1 | Accelerometer and gyroscope for motion sensing |
-| nRF24L01 | 1 | Wireless communication with the receiver |
-| TP4056 3.7V LiPo charging module | 1 | LiPo battery charging |
-| Voltage booster module | 1 | Power conversion for the glove circuit |
-| 500mAh 3.7V LiPo battery | 1 | Portable power source |
-
-### Receiver Unit
+### Each glove (left and right)
 
 | Component | Quantity | Purpose |
 |---|---:|---|
-| Arduino Nano | 1 | Main receiver controller |
-| TP4056 3.7V LiPo charging module | 1 | LiPo battery charging |
-| nRF24L01 | 1 | Receives wireless gesture packets |
-| microSD card | 1 | Stores audio tracks for the DFPlayer Mini |
-| DFPlayer Mini | 1 | Plays the selected voice prompt |
-| 500mAh 3.7V LiPo battery | 1 | Portable power source |
-| AUX female port | 1 | Audio output connection |
+| Arduino Nano | 1 | Microcontroller |
+| MPU6050 | 1 | Accelerometer and gyroscope |
+| nRF24L01 | 1 | Wireless data transmission |
+| TP4056 LiPo charging module | 1 | Battery charging |
+| Voltage booster module | 1 | Power conversion |
+| 500mAh 3.7V LiPo battery | 1 | Portable power |
 
-## Repository Structure
+### Receiver
+
+| Component | Quantity | Purpose |
+|---|---:|---|
+| Arduino Nano | 1 | Receiver controller |
+| nRF24L01 | 1 | Wireless data reception |
+| microSD card | 1 | Audio-track storage |
+| DFPlayer Mini | 1 | Audio playback |
+| AUX female port | 1 | Audio output connection |
+| TP4056 LiPo charging module | 1 | Battery charging |
+| 500mAh 3.7V LiPo battery | 1 | Portable power |
+
+## Firmware
 
 ```text
 Vocal-Gloves/
 ├── assets/
 │   └── images/
-│       ├── README.md
 │       ├── vocal-gloves-overview.jpg
 │       ├── vocal-gloves-receiver.jpg
-│       └── my-vocal-gloves-photo.jpg
+│       ├── yugansu-rijal.jpg
+│       └── suprim-ojha.jpg
 ├── docs/
 │   └── project-creator.md
 ├── firmware/
@@ -80,55 +114,51 @@ Vocal-Gloves/
 └── README.md
 ```
 
-## Firmware Files
+| Firmware file | Purpose | Status |
+|---|---|---|
+| `firmware/left_glove/left_glove.ino` | Left-hand gesture sensing and transmission | Placeholder |
+| `firmware/right_glove/right_glove.ino` | Right-hand gesture sensing and transmission | Initial implementation |
+| `firmware/receiver/receiver.ino` | Wireless reception and audio playback | Initial implementation |
 
-| File | Description |
-|---|---|
-| `firmware/left_glove/left_glove.ino` | Placeholder for the left-glove firmware. Add your code here. |
-| `firmware/right_glove/right_glove.ino` | Right-glove firmware. |
-| `firmware/receiver/receiver.ino` | Receiver firmware. |
+## Software Setup
 
-## Gesture and Communication Notes
+1. Install the Arduino IDE.
+2. Install the **RF24** library by TMRh20 using Library Manager.
+3. Install **DFRobotDFPlayerMini** using Library Manager.
+4. Open the relevant `.ino` file from the `firmware/` directory.
+5. Select the correct Arduino Nano board and processor/bootloader option for your specific Nano.
+6. Verify the pin connections and power requirements before uploading firmware.
 
-The supplied right-glove sketch assigns its six detected gestures to **G07–G12** and sends packets with hand ID `2`.
+The sketches also use Arduino core libraries such as `Wire`, `SPI`, and `SoftwareSerial`, where applicable.
 
-The supplied receiver sketch:
-- Accepts hand IDs `1` (left) and `2` (right).
-- Plays gesture tracks G01–G12 from the selected language folder.
-- Supports master enable/disable commands from the left-hand controller.
-- Accepts language-folder selection commands from the right-hand controller.
+## Audio File Organization
 
-The left-glove firmware should follow the packet format and command conventions used by the receiver and right-glove sketch.
+The receiver firmware selects language folders on the microSD card:
 
-## Software Requirements
+- `01` — Nepali prompts
+- `02` — English prompts
 
-Install the following Arduino libraries through the Arduino IDE Library Manager:
+Place numbered audio tracks in the corresponding folders so that each track number matches its gesture ID. Check the DFPlayer Mini documentation and the receiver sketch for the exact supported audio format and naming convention.
 
-- **RF24** by TMRh20
-- **DFRobotDFPlayerMini**
+## Hardware and Safety Notes
 
-The Arduino core also provides `Wire`, `SPI`, and `SoftwareSerial` for the Nano platform.
+- **nRF24L01 power:** The radio module uses 3.3V. Never connect its VCC pin to the Nano's 5V supply. Use a stable 3.3V source suitable for the module.
+- **Battery charging:** Use a TP4056 module compatible with the selected LiPo cell. Do not charge damaged, swollen, or overheated batteries.
+- **Voltage conversion:** Confirm the voltage-booster output and the input-voltage requirements of each connected module before powering the circuit.
+- **Wiring:** Confirm the actual pinout of each board and module. Do not assume all Nano boards or module breakouts have identical layouts.
+- **Testing:** Test each subsystem separately before wearing the gloves or relying on the system.
 
-## Audio Files
+## Current Limitations
 
-Prepare the microSD card in a format supported by the DFPlayer Mini. The supplied receiver code selects:
-
-- Folder `01` — Nepali audio
-- Folder `02` — English audio
-
-Each folder should contain numbered audio tracks corresponding to gesture IDs (for example, track 1 for G01 and track 12 for G12). Confirm the DFPlayer Mini's supported file format and naming requirements before loading the card.
-
-## Important Hardware Notes
-
-- The nRF24L01 operates at **3.3V**. Do not connect its VCC pin to the Nano's 5V output. Use a stable 3.3V supply and suitable logic-level interfacing where required.
-- Check the voltage booster output and the power requirements of every module before connecting the battery.
-- Use a TP4056 module appropriate for the specific LiPo cell and follow safe LiPo charging practices. Do not charge a damaged or swollen battery.
-- Verify the actual pin connections against your hardware before powering the circuit. Pin assignments and wiring diagrams will be documented here once finalized.
+- Left-glove firmware has not yet been implemented.
+- Gesture recognition may require calibration and testing for different users and wearing positions.
+- Audio prompts must be recorded, named, and copied to the microSD card.
+- The system is a development prototype and is not a certified medical or emergency communication device.
 
 ## Contributing
 
-Contributions, improvements, testing notes, and hardware documentation are welcome. Please keep firmware changes organized by device: left glove, right glove, or receiver.
+Suggestions, bug reports, hardware test results, and improvements are welcome. Keep changes organized by subsystem and document wiring, gesture mappings, and firmware behavior when making updates.
 
 ## License
 
-This project is released under the MIT License. See [LICENSE](LICENSE).
+This project is distributed under the [MIT License](LICENSE).
