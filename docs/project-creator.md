@@ -1,11 +1,15 @@
-# Project Creator
+# Project Creators
 
-This page is reserved for a photo of the project creator wearing the Vocal Gloves.
+The people behind Vocal Gloves.
 
-## Wearing Vocal Gloves
+## Yugansu Rijal
 
-Add your photo to `assets/images/my-vocal-gloves-photo.jpg` in the repository. Once the image is uploaded, it will appear below.
+Add Yugansu's photo wearing the Vocal Gloves to `assets/images/yugansu-rijal.jpg`.
 
-![Project creator wearing Vocal Gloves](../assets/images/my-vocal-gloves-photo.jpg)
+![Yugansu Rijal wearing Vocal Gloves](../assets/images/yugansu-rijal.jpg)
 
-*Photo: project creator demonstrating the Vocal Gloves wearable system.*
+## Suprim Ojha
+
+Add Suprim's photo wearing the Vocal Gloves to `assets/images/suprim-ojha.jpg`.
+
+![Suprim Ojha wearing Vocal Gloves](../assets/images/suprim-ojha.jpg)
