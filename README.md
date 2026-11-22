@@ -23,8 +23,6 @@ The project is being developed with accessible, low-cost embedded hardware, with
   <sub>Wireless audio receiver</sub>
 </p>
 
-**Add your images:** upload the two photos to `assets/images/` using the exact filenames shown above. You can change the displayed image width by editing the `width` values in this section.
-
 ## Project Creators
 
 <p align="center">
