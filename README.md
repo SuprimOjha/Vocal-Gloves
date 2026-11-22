@@ -11,14 +11,11 @@ Place your project photos in `assets/images/` using these filenames:
 | Photo | File to add |
 |---|---|
 | Full project overview | `vocal-gloves-overview.jpg` |
-| Close-up of glove electronics | `vocal-gloves-hardware.jpg` |
 | Receiver unit | `vocal-gloves-receiver.jpg` |
 
 ### Project Overview
 ![Vocal Gloves overview](assets/images/vocal-gloves-overview.jpg)
 
-### Glove Hardware
-![Vocal Gloves hardware](assets/images/vocal-gloves-hardware.jpg)
 
 ### Receiver Unit
 ![Vocal Gloves receiver](assets/images/vocal-gloves-receiver.jpg)
@@ -68,7 +65,6 @@ Vocal-Gloves/
 │   └── images/
 │       ├── README.md
 │       ├── vocal-gloves-overview.jpg
-│       ├── vocal-gloves-hardware.jpg
 │       ├── vocal-gloves-receiver.jpg
 │       └── my-vocal-gloves-photo.jpg
 ├── docs/
