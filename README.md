@@ -6,9 +6,15 @@ A wearable gesture-to-speech system that uses motion sensors and wireless commun
 
 ## Project Photos
 
-Add your project photos to `assets/images/` using the filenames below. The placeholders will display automatically once the images are committed.
+Place your project photos in `assets/images/` using these filenames:
 
-### Vocal Gloves — Overview
+| Photo | File to add |
+|---|---|
+| Full project overview | `vocal-gloves-overview.jpg` |
+| Close-up of glove electronics | `vocal-gloves-hardware.jpg` |
+| Receiver unit | `vocal-gloves-receiver.jpg` |
+
+### Project Overview
 ![Vocal Gloves overview](assets/images/vocal-gloves-overview.jpg)
 
 ### Glove Hardware
@@ -16,6 +22,10 @@ Add your project photos to `assets/images/` using the filenames below. The place
 
 ### Receiver Unit
 ![Vocal Gloves receiver](assets/images/vocal-gloves-receiver.jpg)
+
+## Project Creator
+
+Add a photo of yourself wearing the Vocal Gloves. Save it as `my-vocal-gloves-photo.jpg` inside `assets/images/`. It will appear in the dedicated [Project Creator Photo page](docs/project-creator.md).
 
 ## System Architecture
 
@@ -50,10 +60,19 @@ The current receiver firmware expects gesture IDs **G01–G06** from the left gl
 | 500mAh 3.7V LiPo battery | 1 | Portable power source |
 | AUX female port | 1 | Audio output connection |
 
-## Firmware Structure
+## Repository Structure
 
 ```text
 Vocal-Gloves/
+├── assets/
+│   └── images/
+│       ├── README.md
+│       ├── vocal-gloves-overview.jpg
+│       ├── vocal-gloves-hardware.jpg
+│       ├── vocal-gloves-receiver.jpg
+│       └── my-vocal-gloves-photo.jpg
+├── docs/
+│   └── project-creator.md
 ├── firmware/
 │   ├── left_glove/
 │   │   └── left_glove.ino
@@ -61,20 +80,17 @@ Vocal-Gloves/
 │   │   └── right_glove.ino
 │   └── receiver/
 │       └── receiver.ino
-├── assets/
-│   └── images/
-│       └── (add project photos here)
 ├── LICENSE
 └── README.md
 ```
 
-### Firmware Files
+## Firmware Files
 
 | File | Description |
 |---|---|
 | `firmware/left_glove/left_glove.ino` | Placeholder for the left-glove firmware. Add your code here. |
-| `firmware/right_glove/right_glove.ino` | Uploaded right-glove firmware. |
-| `firmware/receiver/receiver.ino` | Uploaded receiver firmware. |
+| `firmware/right_glove/right_glove.ino` | Right-glove firmware. |
+| `firmware/receiver/receiver.ino` | Receiver firmware. |
 
 ## Gesture and Communication Notes
 
